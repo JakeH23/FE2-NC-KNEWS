@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class Navigation extends Component {
 	render() {
-		return <div className='Nav'> NavBar</div>;
+		return (
+			<Fragment>
+				<div className='Topic'> Topic Search</div>
+				<div className='User'> User Search</div>
+				<div className='Article'> Artcle Search</div>
+			</Fragment>
+		);
 	}
 }
 

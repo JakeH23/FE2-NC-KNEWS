@@ -5,6 +5,10 @@ import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 import Content from './Content';
+import { Router } from '@reach/router';
+import AddArtForm from './AddArtForm';
+import Article from './Article';
+import User from './User';
 
 class App extends Component {
 	render() {
@@ -12,7 +16,12 @@ class App extends Component {
 			<div className='App'>
 				<Header />
 				<Navigation />
-				<Content />
+				<Router>
+					<Content path='/' />
+					<AddArtForm path='/addArticle' />
+					<Article path='/articles/:article_id' />
+					<User path='/users/:username' />
+				</Router>
 				<Sidebar />
 				<Footer />
 			</div>
