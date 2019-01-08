@@ -9,6 +9,7 @@ import { Router } from '@reach/router';
 import AddArtForm from './AddArtForm';
 import Article from './Article';
 import User from './User';
+import AddComForm from './AddComForm';
 
 class App extends Component {
 	render() {
@@ -16,9 +17,10 @@ class App extends Component {
 			<div className='App'>
 				<Header />
 				<Navigation />
-				<Router>
+				<Router className='main'>
 					<Content path='/' />
 					<AddArtForm path='/addArticle' />
+					<AddComForm path='/addComment' />
 					<Article path='/articles/:article_id' />
 					<User path='/users/:username' />
 				</Router>

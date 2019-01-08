@@ -6,6 +6,14 @@
 	height: 100vh;
 }
 
+.Router {
+	display: grid;
+	grid-template: 1.5fr 1.5fr 14fr 1fr / .74fr 4.5fr 3fr 3fr;
+	grid-template-areas: "logo header login add" "topic topic user article" "main main main sidebar"
+		"footer footer footer footer";
+	height: 100vh;
+}
+
 .Header {
 	background-color: #ba1f32;
 	grid-area: header;
@@ -70,7 +78,7 @@ a {
 	background-color: white;
 	grid-area: article;
 }
-.Content {
+.main {
 	background-color: #ba1f32;
 	grid-area: main;
 	text-align: center;
@@ -104,7 +112,7 @@ ul {
 	padding-left: 0;
 	margin-top: 6px;
 }
-ul li {
+.Content li {
 	color: black;
 	cursor: pointer;
 	position: relative;
@@ -120,8 +128,8 @@ ul li {
 	-ms-user-select: none;
 	user-select: none;
 	display: grid;
-	grid-template: 1fr 1fr 1fr / 1fr 1fr 1r 1fr;
-	grid-template-areas: "upvote . . ." "votes title . comments" "downvote author . .";
+	grid-template: 1fr 1fr 1fr / .75fr 10fr .75fr;
+	grid-template-areas: "upvote title comments" "votes author commentLogo" "downvote topic .";
 }
 
 ul li:nth-child(even) {
@@ -140,6 +148,8 @@ ul li:hover {
 	background-size: 25px 25px;
 	background-repeat: no-repeat;
 	background-color: none;
+	max-width: 100%;
+	margin-left: 6.2px;
 }
 .downVote {
 	grid-area: downvote;
@@ -149,28 +159,70 @@ ul li:hover {
 	background-size: 25px 25px;
 	background-repeat: no-repeat;
 	transform: rotate(180deg);
+	max-width: 100%;
+	margin-left: 6.2px;
+}
+
+.commentLogo {
+	grid-area: commentLogo;
+	height: 25px;
+	width: 25px;
+	background-image: url(https://cdn0.iconfinder.com/data/icons/free-daily-icon-set/512/Comments-512.png);
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+	max-width: 100%;
+	margin-left: 6px;
 }
 
 .artVote {
-	/* background-color: orange; */
 	grid-area: votes;
-	text-align: left;
+	text-align: center;
+	max-width: 100%;
+	padding-top: 2px;
 }
 
 .artCom {
-	/* background-color: grey; */
 	grid-area: comments;
-	text-align: right;
+	text-align: center;
+	max-width: 100%;
+}
+
+.artTop {
+	grid-area: topic;
+	text-align: left;
+	max-width: 100%;
+	margin-left: 20px;
 }
 
 .artAut {
-	/* background-color: blue; */
 	grid-area: author;
+	max-width: 100%;
+	margin-left: 20px;
 }
 
 .artTitle {
-	/* background-color: rosybrown; */
 	grid-area: title;
+	max-width: 100%;
+	margin-left: 20px;
+}
+
+.comBody {
+	color: black;
+	cursor: pointer;
+	position: relative;
+	padding: 12px 8px 12px 8px;
+	list-style-type: none;
+	background: silver;
+	font-size: 18px;
+	transition: 0.25s;
+	text-align: left;
+	border-radius: 10px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	display: grid;
+	grid-template-areas: "upvote title comments" "votes author commentLogo" "downvote topic .";
 }
 
 .topicname {
@@ -207,4 +259,31 @@ ul a {
 }
 ul1 a {
 	color: black;
+}
+
+.artBox {
+	background-color: black;
+	border-radius: 10px;
+	margin-bottom: 50px;
+}
+
+#body {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=number],
+select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }

@@ -23,12 +23,20 @@ class Content extends Component {
 										<Link to={`/articles/${article.article_id}`}>{article.title}</Link>
 									</span>
 									<span className='artAut' key={'author' + article.article_id}>
-										<Link to={`/users/${article.author}`}>{article.author}</Link>
+										<Link to={`/users/${article.author}`}>By {article.author}</Link>
+									</span>
+									<span className='artTop' key={'topic' + article.article_id}>
+										<Link to={`/topics/${article.topic}/articles`}>Topic: {article.topic}</Link>
 									</span>
 									<span className='artCom' key={'comments' + article.article_id}>
 										{article.comment_count}
 									</span>
 									<button className='downVote' />
+									<div className='commentLogo'>
+										<button>
+											<Link to='/addComment' />
+										</button>
+									</div>
 								</li>
 							);
 						})}

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
-import { Link } from '@reach/router';
 
 class CommentsButton extends Component {
 	state = {
@@ -9,7 +8,7 @@ class CommentsButton extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div className='Content'>
+				<div className='ComButton'>
 					<ul>
 						{this.state.comments.map((comment) => {
 							return (

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
 import { Link } from '@reach/router';
 
-class AddArtForm extends Component {
+class AddComForm extends Component {
 	state = {
 		articleTitle: '',
 		body: '',
@@ -56,4 +56,4 @@ class AddArtForm extends Component {
 	};
 }
 
-export default AddArtForm;
+export default AddComForm;
