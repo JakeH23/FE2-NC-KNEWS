@@ -4,9 +4,9 @@ class Navigation extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div className='Topic'> Topic Search</div>
-				<div className='User'> User Search</div>
-				<div className='Article'> Artcle Search</div>
+				<div className='Filter'>
+					<input type='text' id='myInput' placeholder='Search for article..' />
+				</div>
 			</Fragment>
 		);
 	}

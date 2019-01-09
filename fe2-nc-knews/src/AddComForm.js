@@ -4,52 +4,36 @@ import { Link } from '@reach/router';
 
 class AddComForm extends Component {
 	state = {
-		articleTitle: '',
-		body: '',
-		userId: null
+		body: ''
 	};
 	render() {
 		return (
 			<Fragment>
-				<div className='AddArtForm'>
-					<h4>Add a new article</h4>
+				<div className='AddComForm'>
+					<h4>Add a new comment</h4>
 					<form>
-						<label>Article Title:</label>
-						<input onChange={this.handleTitleChange} type='text' />
-						<label>Article Body:</label>
-						<input onChange={this.handlebodyChange} id='body' type='text' />
-						<label>User ID:</label>
-						<input onChange={this.handleUserIdChange} type='number' />
-						<button onClick={this.addToArticles}>
-							<Link to='/'>Submit Article </Link>
+						<label>Please enter your comment below:</label>
+						<input onChange={this.handlebodyChange} id='body' type='text' value={this.state.body} />
+						<button id='submit' onClick={this.addToComments}>
+							<Link to='/'>Submit Comment </Link>
 						</button>
 					</form>
 				</div>
 			</Fragment>
 		);
 	}
-	handleTitleChange = (event) => {
-		this.setState({ articleTitle: event.target.value }, () => {
-			console.log(this.state);
-		});
-	};
 	handlebodyChange = (event) => {
 		this.setState({ body: event.target.value }, () => {
 			console.log(this.state);
 		});
 	};
-	handleUserIdChange = (event) => {
-		this.setState({ userId: event.target.value }, () => {
-			console.log(this.state);
-		});
-	};
 
-	addToArticles = (event) => {
+	addToComments = (event) => {
+		console.log(this.props);
 		event.preventDefault();
-		Axios.post('https://jhnc-news.herokuapp.com/api/articles', {
-			title: this.state.title,
+		Axios.post(`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}/comments`, {
 			body: this.state.body,
-			user: this.state.user_id
+			user_id: this.props.user.user_id
 		}).then((res) => {
 			console.log(res);
 		});

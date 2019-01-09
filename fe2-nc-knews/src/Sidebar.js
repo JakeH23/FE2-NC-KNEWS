@@ -10,8 +10,8 @@ class Sidebar extends Component {
 		return (
 			<Fragment>
 				<div className='Sidebar'>
-					<ul1>
-						Topics
+					<ul>
+						TOPICS
 						{this.state.topics.map((topic) => {
 							return (
 								<li key={topic.slug}>
@@ -21,7 +21,12 @@ class Sidebar extends Component {
 								</li>
 							);
 						})}
-					</ul1>
+					</ul>
+					<div className='AddTopic'>
+						<button id='submitTop'>
+							<Link to='/addTopic'>Create a topic!</Link>
+						</button>
+					</div>
 				</div>
 			</Fragment>
 		);

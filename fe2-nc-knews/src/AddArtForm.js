@@ -6,7 +6,7 @@ class AddArtForm extends Component {
 	state = {
 		articleTitle: '',
 		body: '',
-		userId: null
+		topic: ''
 	};
 	render() {
 		return (
@@ -15,13 +15,20 @@ class AddArtForm extends Component {
 					<h4>Add a new article</h4>
 					<form>
 						<label>Article Title:</label>
-						<input onChange={this.handleTitleChange} type='text' />
+						<input
+							onChange={this.handleTitleChange}
+							id='title'
+							type='text'
+							value={this.state.articleTitle}
+						/>
 						<label>Article Body:</label>
-						<input onChange={this.handlebodyChange} id='body' type='text' />
-						<label>User ID:</label>
-						<input onChange={this.handleUserIdChange} type='number' />
+						<input onChange={this.handlebodyChange} id='body' type='text' value={this.state.body} />
+						<label>Topic:</label>
+						<input onChange={this.handleTopicChange} id='body' type='text' value={this.state.topic} />
 						<button onClick={this.addToArticles}>
-							<Link to='/'>Submit Article </Link>
+							<Link id='submit' to='/'>
+								Submit Article{' '}
+							</Link>
 						</button>
 					</form>
 				</div>
@@ -38,18 +45,18 @@ class AddArtForm extends Component {
 			console.log(this.state);
 		});
 	};
-	handleUserIdChange = (event) => {
-		this.setState({ userId: event.target.value }, () => {
+	handleTopicChange = (event) => {
+		this.setState({ topic: event.target.value }, () => {
 			console.log(this.state);
 		});
 	};
 
 	addToArticles = (event) => {
 		event.preventDefault();
-		Axios.post('https://jhnc-news.herokuapp.com/api/articles', {
-			title: this.state.title,
+		Axios.post(`https://jhnc-news.herokuapp.com/api/topics/${this.state.topic}/articles`, {
+			title: this.state.articleTitle,
 			body: this.state.body,
-			user: this.state.user_id
+			created_by: this.props.user.user_id
 		}).then((res) => {
 			console.log(res);
 		});
