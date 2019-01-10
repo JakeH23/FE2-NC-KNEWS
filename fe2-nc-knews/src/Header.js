@@ -6,7 +6,7 @@ class Header extends Component {
 		return (
 			<Fragment>
 				<div className='Header'>
-					<Link to='/'>NC NEWS </Link>
+					<Link to='/'>NC KNEWS </Link>
 				</div>
 				<div className='Logo'>
 					<button className='homeButtonSize'>

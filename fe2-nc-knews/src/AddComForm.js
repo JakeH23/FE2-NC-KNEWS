@@ -12,7 +12,7 @@ class AddComForm extends Component {
 				<div className='AddComForm'>
 					<h4>Add a new comment</h4>
 					<form>
-						<label>Please enter your comment below:</label>
+						<label>Please enter your commnt below:</label>
 						<input onChange={this.handlebodyChange} id='body' type='text' value={this.state.body} />
 						<button id='submit' onClick={this.addToComments}>
 							<Link to='/'>Submit Comment </Link>

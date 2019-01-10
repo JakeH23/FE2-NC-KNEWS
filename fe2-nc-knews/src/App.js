@@ -10,10 +10,11 @@ import AddArtForm from './AddArtForm';
 import Article from './Article';
 import User from './User';
 import AddComForm from './AddComForm';
-import Comment from './Comment';
 import Auth from './Auth';
 import AddTopicForm from './AddTopicForm';
 import Topic from './Topic';
+import DeleteArticlePage from './DeleteArticlePage';
+import UserArticles from './UserArticles';
 
 class App extends Component {
 	state = {
@@ -32,8 +33,9 @@ class App extends Component {
 						<Article user={this.state.user} path='/articles/:article_id' />
 						<User user={this.state.user} path='/users/:username' />
 						<Topic path=':topic/articles' />
-						<Comment path='/comments/:comment_id' />
 						<AddTopicForm path='/addTopic' />
+						<DeleteArticlePage user={this.state.user} path='/articles/deleteArticle' />
+						<UserArticles path='/users/:username/articles' />
 					</Router>
 					<Sidebar />
 					<Footer />

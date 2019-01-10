@@ -18,10 +18,15 @@ class User extends Component {
 							<Link to='/addArticle'>Add Article</Link>
 						</button>
 						<button id='submitInUser'>
-							<Link to='/'>View all articles</Link>
+							<Link to={`/users/${this.props.username}/articles`}>
+								{`${this.state.user.name}'s Articles`}{' '}
+							</Link>
 						</button>
 						<button id='submitInUser'>
 							<Link to='/addTopic'>Create a topic</Link>
+						</button>
+						<button id='submitInUser'>
+							<Link to='/articles/deleteArticle'>Delete article</Link>
 						</button>
 					</section>
 				</div>

@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { Link } from '@reach/router';
 import Votes from './Votes';
 import moment from 'moment';
+import DeleteCommentButton from './DeleteCommentButton';
 
 class CommentsButton extends Component {
 	state = {
@@ -12,7 +13,7 @@ class CommentsButton extends Component {
 		return (
 			<Fragment>
 				<div className='ComButton'>
-					<ul className>
+					<ul>
 						{this.state.comments.map((comment) => {
 							return (
 								<li key={comment.comment_id}>
@@ -24,8 +25,13 @@ class CommentsButton extends Component {
 										{`Posted by: ${comment.author}`}
 									</span>
 									<span className='comBody' key={'comBody' + comment.comment_id}>
-										<Link to={`/comments/${comment.comment_id}`}>{comment.body}</Link>
+										{comment.body}
 									</span>
+									<DeleteCommentButton
+										commentId={comment.comment_id}
+										articleId={this.props.article_id}
+										author={comment.author}
+									/>
 								</li>
 							);
 						})}

@@ -30,7 +30,7 @@ class Content extends Component {
 										<Link to={`/users/${article.author}`}>By {article.author}</Link>
 									</span>
 									<span className='artTop' key={'topic' + article.article_id}>
-										<Link to={`/topics/${article.topic}/articles`}>
+										<Link to={`/${article.topic}/articles`}>
 											Topic: {article.topic.charAt(0).toUpperCase() + article.topic.substr(1)}
 										</Link>
 									</span>

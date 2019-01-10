@@ -5,6 +5,7 @@ class Pagenation extends Component {
 		return (
 			<div>
 				<button
+					id='buttonStylyID'
 					onClick={() => {
 						this.props.handlePage(-1);
 					}}
@@ -12,6 +13,7 @@ class Pagenation extends Component {
 					Previous Page
 				</button>
 				<button
+					id='buttonStylyID'
 					onClick={() => {
 						this.props.handlePage(1);
 					}}

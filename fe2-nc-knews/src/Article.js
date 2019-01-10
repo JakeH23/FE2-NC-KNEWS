@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
 import CommentsButton from './CommentsButton';
 import Votes from './Votes';
+import { Link } from '@reach/router';
 import moment from 'moment';
 
 class Article extends Component {
@@ -13,7 +14,10 @@ class Article extends Component {
 			<Fragment>
 				<div className='artBox'>
 					<h2>{this.state.article.title}</h2>
-					<h4>{`Written by ${this.state.article.author}`}</h4>
+					<h4>
+						<Link to={`/users/${this.state.article.author}`}>{`Written by ${this.state.article
+							.author}`}</Link>
+					</h4>
 					{this.state.article.created_at && (
 						<p> {`posted: ${moment(this.state.article.created_at).startOf('day').fromNow()}`}</p>
 					)}
