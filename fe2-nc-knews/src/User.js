@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
+import { Link } from '@reach/router';
 
 class User extends Component {
 	state = {
@@ -8,16 +9,28 @@ class User extends Component {
 	render() {
 		return (
 			<Fragment>
-				<p>{`Username: ${this.state.user.username}`}</p>
-				<img alt='' src={`${this.state.user.avatar_url}`} />
-				<p>{this.state.user.name}</p>
+				<div className='userContainer'>
+					<section className='userMain'>
+						<img id='userImg' alt='' src={`${this.state.user.avatar_url}`} />
+						<p>{`Username: ${this.state.user.username}`}</p>
+						<p id='useruseruser'>{this.state.user.name}</p>
+						<button id='submitInUser'>
+							<Link to='/addArticle'>Add Article</Link>
+						</button>
+						<button id='submitInUser'>
+							<Link to='/'>View all articles</Link>
+						</button>
+						<button id='submitInUser'>
+							<Link to='/addTopic'>Create a topic</Link>
+						</button>
+					</section>
+				</div>
 			</Fragment>
 		);
 	}
 
 	componentDidMount() {
 		Axios.get(`https://jhnc-news.herokuapp.com/api/users/${this.props.username}`).then(({ data: { user } }) => {
-			console.log(user);
 			this.setState({ user: user });
 		});
 	}

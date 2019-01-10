@@ -7,7 +7,6 @@ class Article extends Component {
 		comment: {}
 	};
 	render() {
-		console.log(this.state);
 		return (
 			<Fragment>
 				<div className='artBox'>
@@ -26,7 +25,6 @@ class Article extends Component {
 		Axios.get(
 			`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}/comments/${this.props.comment_id}`
 		).then(({ data: { articles: [ article ] }, comment }) => {
-			console.log(article);
 			this.setState({ article: article, comment: comment });
 		});
 	}

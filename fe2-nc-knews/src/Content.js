@@ -1,11 +1,15 @@
 import React, { Fragment, Component } from 'react';
 import Axios from 'axios';
 import { Link } from '@reach/router';
+import Votes from './Votes';
+import Pagenation from './Pagenation';
 
 class Content extends Component {
 	state = {
 		articles: [],
-		voteCount: 0
+		voteCount: 0,
+		page: 1,
+		sort_by: 'votes'
 	};
 	render() {
 		return (
@@ -16,40 +20,34 @@ class Content extends Component {
 						{this.state.articles.map((article) => {
 							return (
 								<li key={article.article_id}>
-									<button
-										className='upVote'
-										onClick={() => {
-											this.handleVote(1, article.article_id);
-										}}
-									/>
-									<span className='artVote' key={'votes' + article.article_id}>
-										{article.votes + this.state.voteCount}
-									</span>
+									<Votes articleId={article.article_id} votes={article.votes} />
 									<span className='artTitle' key={'title' + article.article_id}>
-										<Link to={`/articles/${article.article_id}`}>{article.title}</Link>
+										<Link to={`/articles/${article.article_id}`}>
+											{article.title.charAt(0).toUpperCase() + article.title.substr(1)}
+										</Link>
 									</span>
 									<span className='artAut' key={'author' + article.article_id}>
 										<Link to={`/users/${article.author}`}>By {article.author}</Link>
 									</span>
 									<span className='artTop' key={'topic' + article.article_id}>
-										<Link to={`/topics/${article.topic}/articles`}>Topic: {article.topic}</Link>
+										<Link to={`/topics/${article.topic}/articles`}>
+											Topic: {article.topic.charAt(0).toUpperCase() + article.topic.substr(1)}
+										</Link>
 									</span>
 									<span className='artCom' key={'comments' + article.article_id}>
-										{article.comment_count}
+										<Link to={`/articles/${article.article_id}`}>
+											Comments {article.comment_count}
+										</Link>
 									</span>
-									<button
-										className='downVote'
-										onClick={() => {
-											this.handleVote(-1, article.article_id);
-										}}
-									/>
 									<div className='commentLogo'>
 										<button className='commentButtonSize'>
 											<Link to={`${article.article_id}/addComment`}>
 												<img
 													alt=''
 													className='commentButton'
-													src='https://cdn0.iconfinder.com/data/icons/free-daily-icon-set/512/Comments-512.png'
+													src='https://static.thenounproject.com/png/24079-200.png'
+													height='15px'
+													width='15px'
 												/>
 											</Link>
 										</button>
@@ -58,34 +56,34 @@ class Content extends Component {
 							);
 						})}
 					</ul>
+					<Pagenation handlePage={this.handlePage} />
 				</div>
 			</Fragment>
 		);
 	}
 
 	componentDidMount() {
-		Axios.get(`https://jhnc-news.herokuapp.com/api/articles?sort_by=votes`).then(({ data: { articles } }) => {
+		Axios.get(`https://jhnc-news.herokuapp.com/api/articles?sort_by=created_at`).then(({ data: { articles } }) => {
 			this.setState({ articles: articles });
 		});
 	}
-
-	handleVote = (increment, articleId) => {
-		const { commentId } = this.props;
-		const voteObj = { inc_votes: increment };
-		if ((this.state.voteCount === 1 && increment === 1) || (this.state.voteCount === -1 && increment === -1)) {
-		} else {
-			this.setState({ voteCount: this.state.voteCount + increment });
-			Axios.patch(
-				commentId
-					? `https://jhnc-news.herokuapp.com/api/articles/${articleId}/comments/${commentId}`
-					: `https://jhnc-news.herokuapp.com/api/articles/${articleId}`,
-				voteObj
-			).catch((err) => {
-				this.setState((state) => {
-					return { voteCount: state.voteCount - increment };
+	handlePage = (increment) => {
+		this.setState({ page: this.state.page + increment }, () => {
+			if (this.state.page < 1) {
+				this.setState({ page: 1 });
+			} else {
+				this.getPage().catch((err) => {
+					this.setState({ page: this.state.page - increment });
 				});
-			});
-		}
+			}
+		});
+	};
+
+	getPage = () => {
+		const newPage = `?p=${this.state.page}`;
+		return Axios.get(`https://jhnc-news.herokuapp.com/api/articles${newPage}`).then(({ data }) => {
+			this.setState({ articles: data.articles });
+		});
 	};
 }
 

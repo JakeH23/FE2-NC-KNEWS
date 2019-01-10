@@ -25,10 +25,8 @@ class AddArtForm extends Component {
 						<input onChange={this.handlebodyChange} id='body' type='text' value={this.state.body} />
 						<label>Topic:</label>
 						<input onChange={this.handleTopicChange} id='body' type='text' value={this.state.topic} />
-						<button onClick={this.addToArticles}>
-							<Link id='submit' to='/'>
-								Submit Article{' '}
-							</Link>
+						<button id='submit' onClick={this.addToArticles}>
+							<Link to='/'>Submit Article </Link>
 						</button>
 					</form>
 				</div>

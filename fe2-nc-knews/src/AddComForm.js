@@ -29,7 +29,6 @@ class AddComForm extends Component {
 	};
 
 	addToComments = (event) => {
-		console.log(this.props);
 		event.preventDefault();
 		Axios.post(`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}/comments`, {
 			body: this.state.body,

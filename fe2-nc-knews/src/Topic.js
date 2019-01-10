@@ -1,57 +1,45 @@
 import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
 import { Link } from '@reach/router';
+import moment from 'moment';
 
 class Topic extends Component {
 	state = {
-		slug: '',
-		description: ''
+		articles: []
 	};
 	render() {
 		return (
 			<Fragment>
-				<div className='AddTopForm'>
-					<h4>Create a new topic</h4>
-					<form>
-						<label>Topic Name:</label>
-						<input onChange={this.handleTopicChange} id='title' type='text' value={this.state.slug} />
-						<label>Topic description:</label>
-						<input
-							onChange={this.handleDescriptionChange}
-							id='title'
-							type='text'
-							value={this.state.description}
-						/>
-						<button onClick={this.addToTopics}>
-							<Link id='submit' to='/'>
-								Submit Topic
-							</Link>
-						</button>
-					</form>
+				<div className='Topic'>
+					<ul>
+						{`Articles on ${this.props.topic.charAt(0).toUpperCase() + this.props.topic.substr(1)}`}
+						{this.state.articles.map((article) => {
+							return (
+								<li key={article.title}>
+									<span className='articleTitle' key={'articleTitle' + article.article_id}>
+										<Link to={`/articles/${article.article_id}`}>
+											{article.title.charAt(0).toUpperCase() + article.title.substr(1)}
+										</Link>
+									</span>
+									<span className='articleCreated' key={'articleCreated' + article.article_id}>
+										{`posted: ${moment(article.created_at).startOf('day').fromNow()}`}
+									</span>
+								</li>
+							);
+						})}
+					</ul>
 				</div>
 			</Fragment>
 		);
 	}
-	handleTopicChange = (event) => {
-		this.setState({ slug: event.target.value }, () => {
-			console.log(this.state);
-		});
-	};
-	handleDescriptionChange = (event) => {
-		this.setState({ description: event.target.value }, () => {
-			console.log(this.state);
-		});
-	};
 
-	addToTopics = (event) => {
-		event.preventDefault();
-		Axios.post('https://jhnc-news.herokuapp.com/api/topics', {
-			slug: this.state.slug,
-			description: this.state.description
-		}).then((res) => {
-			console.log(res);
+	componentDidMount() {
+		Axios.get(
+			`https://jhnc-news.herokuapp.com/api/topics/${this.props.topic}/articles`
+		).then(({ data: { articles } }) => {
+			this.setState({ articles: articles });
 		});
-	};
+	}
 }
 
 export default Topic;

@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
 import { Link } from '@reach/router';
+import Votes from './Votes';
+import moment from 'moment';
 
 class CommentsButton extends Component {
 	state = {
@@ -14,17 +16,16 @@ class CommentsButton extends Component {
 						{this.state.comments.map((comment) => {
 							return (
 								<li key={comment.comment_id}>
-									<button className='upVoteCom' />
-									<span className='comVote' key={'votes' + comment.comment_id}>
-										{comment.votes}
-									</span>
+									<Votes commentId={comment.comment_id} votes={comment.votes} />
 									<span className='comCreated' key={'created_at' + comment.comment_id}>
-										{`Posted at: ${comment.created_at.slice(0, 10)}`}
+										{`posted: ${moment(comment.created_at).startOf('day').fromNow()}`}
+									</span>
+									<span className='comAuthor' key={'author' + comment.comment_id}>
+										{`Posted by: ${comment.author}`}
 									</span>
 									<span className='comBody' key={'comBody' + comment.comment_id}>
 										<Link to={`/comments/${comment.comment_id}`}>{comment.body}</Link>
 									</span>
-									<button className='downVoteCom' />
 								</li>
 							);
 						})}
