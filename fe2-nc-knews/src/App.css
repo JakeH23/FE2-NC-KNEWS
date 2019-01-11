@@ -29,6 +29,7 @@
 .Logo {
 	grid-area: logo;
 	height: 48px;
+	background-color: black;
 }
 
 .Login {
@@ -320,6 +321,7 @@ ul a {
 	width: 57px;
 	padding-left: 0px;
 	padding-bottom: 0;
+	padding-top: 0px;
 }
 
 .commentLogo {
@@ -375,6 +377,10 @@ ul a {
 	justify-content: space-evenly;
 	width: 100%;
 	font-family: 'Poppins', sans-serif;
+}
+
+.artTitle a {
+	text-align: left;
 }
 
 .authFormInput {
@@ -466,7 +472,7 @@ ul a {
 	text-align: left;
 	top: 50%;
 	padding-top: 10px;
-	padding-left: 20px;
+	padding-left: 10px;
 	padding-right: 20px;
 }
 
@@ -499,7 +505,7 @@ ul a {
 	display: flex;
 	position: absolute;
 	text-align: left;
-	padding-left: 20px;
+	padding-left: 10px;
 	top: 50%;
 }
 
@@ -511,7 +517,7 @@ ul a {
 	display: flex;
 	position: absolute;
 	text-align: left;
-	padding-left: 20px;
+	padding-left: 10px;
 	top: 50%;
 }
 
@@ -524,6 +530,8 @@ ul a {
 	background: black;
 	border-radius: 10px;
 	text-transform: capitalize;
+	padding-left: 7px;
+	padding-right: 7px;
 }
 
 .Topic li {
@@ -545,6 +553,10 @@ ul a {
 .articleTitle {
 	grid-area: articleTitle;
 	font-weight: bold;
+}
+
+.articleTitle a {
+	text-align: left;
 }
 
 .articleCreated {
@@ -601,20 +613,20 @@ ul a {
 	border-radius: 12px;
 	align-items: center;
 	padding: 10px;
-	padding-bottom: 16px;
+	padding-bottom: 110px;
 	font-family: 'Poppins', sans-serif;
 }
 
 #submitInUser {
 	background-color: black;
-	height: 60px;
-	width: 180px;
+	height: 30px;
+	width: 140px;
 	border: none;
 	color: white;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 14px;
+	font-size: 12px;
 	font-family: 'Poppins', sans-serif;
 	border-radius: 4px;
 	text-transform: capitalize;

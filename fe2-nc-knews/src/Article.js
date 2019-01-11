@@ -23,7 +23,7 @@ class Article extends Component {
 								.author}`}</Link>
 						</h4>
 						{this.state.article.created_at && (
-							<p> {`posted: ${moment(this.state.article.created_at).startOf('day').fromNow()}`}</p>
+							<p> {`posted: ${moment(this.state.article.created_at).startOf('hour').fromNow()}`}</p>
 						)}
 						<p id='bodyArt'>{this.state.article.body}</p>
 						<Votes articleId={this.state.article.article_id} votes={this.state.article.votes} />
@@ -35,11 +35,11 @@ class Article extends Component {
 	}
 
 	componentDidMount() {
-		axios.get(
-			`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}`
-		).then(({ data: { articles: [ article ] } }) => {
-			this.setState({ article: article, isLoading: false });
-		});
+		axios
+			.get(`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}`)
+			.then(({ data: { articles: [ article ] } }) => {
+				this.setState({ article: article, isLoading: false });
+			});
 	}
 }
 

@@ -3,7 +3,7 @@ import * as api from './api';
 
 class Auth extends Component {
 	state = {
-		username: 'butter_bridge',
+		username: 'jessjelly',
 		failedAttempt: false
 	};
 	render() {

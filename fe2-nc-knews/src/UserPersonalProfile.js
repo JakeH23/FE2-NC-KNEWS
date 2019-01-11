@@ -18,20 +18,28 @@ class UserPersonalProfile extends Component {
 							<img id='userImg' alt='' src={`${this.state.user.avatar_url}`} />
 							<p>{`Username: ${this.state.user.username}`}</p>
 							<p id='useruseruser'>{this.state.user.name}</p>
-							<button id='submitInUser'>
-								<Link to='/addArticle'>Add Article</Link>
-							</button>
-							<button id='submitInUser'>
-								<Link to={`/users/${this.props.username}/articles`}>
-									{`${this.state.user.name}'s Articles`}{' '}
-								</Link>
-							</button>
-							<button id='submitInUser'>
-								<Link to='/addTopic'>Create a topic</Link>
-							</button>
-							<button id='submitInUser'>
-								<Link to='/articles/deleteArticle'>Delete article</Link>
-							</button>
+							<section>
+								<button id='submitInUser'>
+									<Link to='/addArticle'>Add Article</Link>
+								</button>
+							</section>
+							<section>
+								<button id='submitInUser'>
+									<Link to={`/users/${this.props.username}/articles`}>
+										{`${this.state.user.name}'s Articles`}
+									</Link>
+								</button>
+							</section>
+							<section>
+								<button id='submitInUser'>
+									<Link to='/addTopic'>Create a topic</Link>
+								</button>
+							</section>
+							<section>
+								<button id='submitInUser'>
+									<Link to='/articles/deleteArticle'>Delete article</Link>
+								</button>
+							</section>
 						</section>
 					</div>
 				</Fragment>
