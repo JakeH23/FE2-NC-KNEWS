@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from '@reach/router';
 
 class AddArtForm extends Component {
@@ -51,7 +51,7 @@ class AddArtForm extends Component {
 
 	addToArticles = (event) => {
 		event.preventDefault();
-		Axios.post(`https://jhnc-news.herokuapp.com/api/topics/${this.state.topic}/articles`, {
+		axios.post(`https://jhnc-news.herokuapp.com/api/topics/${this.state.topic}/articles`, {
 			title: this.state.articleTitle,
 			body: this.state.body,
 			created_by: this.props.user.user_id

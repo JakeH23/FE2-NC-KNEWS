@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from '@reach/router';
 
 class AddComForm extends Component {
@@ -30,7 +30,7 @@ class AddComForm extends Component {
 
 	addToComments = (event) => {
 		event.preventDefault();
-		Axios.post(`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}/comments`, {
+		axios.post(`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}/comments`, {
 			body: this.state.body,
 			user_id: this.props.user.user_id
 		}).then((res) => {

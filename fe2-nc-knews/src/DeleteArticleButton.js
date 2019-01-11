@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from '@reach/router';
 
 class DeleteArticleButton extends Component {
@@ -16,7 +16,7 @@ class DeleteArticleButton extends Component {
 	}
 
 	deleteArticle = () => {
-		return Axios.delete(`https://jhnc-news.herokuapp.com/api/articles/${this.props.articleId}`).then(({ data }) => {
+		return axios.delete(`https://jhnc-news.herokuapp.com/api/articles/${this.props.articleId}`).then(({ data }) => {
 			this.setState({ articles: data.articles });
 		});
 	};

@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link, navigate } from '@reach/router';
 import Votes from './Votes';
 import Pagination from './Pagination';
@@ -78,7 +78,7 @@ class Content extends Component {
 	}
 
 	componentDidMount() {
-		Axios.get(`https://jhnc-news.herokuapp.com/api/articles?sort_by=created_at`)
+		axios.get(`https://jhnc-news.herokuapp.com/api/articles?sort_by=created_at`)
 			.then(({ data: { articles } }) => {
 				this.setState({ articles: articles, isLoading: false });
 			})
@@ -101,7 +101,7 @@ class Content extends Component {
 
 	getPage = () => {
 		const newPage = `?p=${this.state.page}`;
-		return Axios.get(`https://jhnc-news.herokuapp.com/api/articles${newPage}`).then(({ data }) => {
+		return axios.get(`https://jhnc-news.herokuapp.com/api/articles${newPage}`).then(({ data }) => {
 			this.setState({ articles: data.articles });
 		});
 	};

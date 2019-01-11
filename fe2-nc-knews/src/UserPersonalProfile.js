@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from '@reach/router';
 import Loading from './Loading';
 
@@ -39,7 +39,7 @@ class UserPersonalProfile extends Component {
 	}
 
 	componentDidMount() {
-		Axios.get(`https://jhnc-news.herokuapp.com/api/users/${this.props.username}`).then(({ data: { user } }) => {
+		axios.get(`https://jhnc-news.herokuapp.com/api/users/${this.props.username}`).then(({ data: { user } }) => {
 			this.setState({ user: user, isLoading: false });
 		});
 	}

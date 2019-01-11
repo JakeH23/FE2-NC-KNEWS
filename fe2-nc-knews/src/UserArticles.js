@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from '@reach/router';
 import Loading from './Loading';
 
@@ -35,7 +35,7 @@ class UserArticles extends Component {
 			);
 	}
 	componentDidMount() {
-		Axios.get(`https://jhnc-news.herokuapp.com/api/articles`).then(({ data: { articles } }) => {
+		axios.get(`https://jhnc-news.herokuapp.com/api/articles`).then(({ data: { articles } }) => {
 			const userArticles = articles.filter((article) => article.author === this.props.username);
 			this.setState({ articles: userArticles, isLoading: false });
 		});

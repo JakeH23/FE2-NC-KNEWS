@@ -39,7 +39,7 @@ class App extends Component {
 						<UserArticles path='/users/:username/articles' />
 						<UserPersonalProfile user={this.state.user} path='/users/:username/profile' />
 						<NoContentError path='/404/noContent' />
-						<Errors path='/404' />
+						<Errors default />
 					</Router>
 					<Sidebar />
 					<Footer />

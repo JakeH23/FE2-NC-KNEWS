@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link, navigate } from '@reach/router';
 import moment from 'moment';
 import Loading from './Loading';
@@ -38,7 +38,7 @@ class Topic extends Component {
 	}
 
 	fetchArticles = () => {
-		Axios.get(`https://jhnc-news.herokuapp.com/api/topics/${this.props.topic}/articles`)
+		axios.get(`https://jhnc-news.herokuapp.com/api/topics/${this.props.topic}/articles`)
 			.then(({ data: { articles } }) => {
 				this.setState({ articles: articles, isLoading: false });
 			})

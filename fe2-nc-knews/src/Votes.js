@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 
 class Votes extends Component {
 	state = {
@@ -33,7 +33,7 @@ class Votes extends Component {
 		if ((this.state.voteCount === 1 && increment === 1) || (this.state.voteCount === -1 && increment === -1)) {
 		} else {
 			this.setState({ voteCount: this.state.voteCount + increment });
-			Axios.patch(
+			axios.patch(
 				commentId
 					? `https://jhnc-news.herokuapp.com/api/articles/${articleId}/comments/${commentId}`
 					: `https://jhnc-news.herokuapp.com/api/articles/${articleId}`,

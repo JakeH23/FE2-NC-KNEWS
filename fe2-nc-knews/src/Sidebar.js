@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from '@reach/router';
 
 class Sidebar extends Component {
@@ -35,7 +35,7 @@ class Sidebar extends Component {
 	}
 
 	componentDidMount() {
-		Axios.get(`https://jhnc-news.herokuapp.com/api/topics`).then(({ data: { topics } }) => {
+		axios.get(`https://jhnc-news.herokuapp.com/api/topics`).then(({ data: { topics } }) => {
 			this.setState({ topics: topics });
 		});
 	}

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import DeleteArticleButton from './DeleteArticleButton';
 import Loading from './Loading';
 
@@ -32,7 +32,7 @@ class DeleteArticlePage extends Component {
 			);
 	}
 	componentDidMount() {
-		Axios.get(`https://jhnc-news.herokuapp.com/api/articles`).then(({ data: { articles } }) => {
+		axios.get(`https://jhnc-news.herokuapp.com/api/articles`).then(({ data: { articles } }) => {
 			const userArticles = articles.filter((article) => article.author === this.props.user.username);
 			this.setState({ articles: userArticles, isLoading: false });
 		});

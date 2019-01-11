@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import CommentsButton from './CommentsButton';
 import Votes from './Votes';
 import { Link } from '@reach/router';
@@ -35,7 +35,7 @@ class Article extends Component {
 	}
 
 	componentDidMount() {
-		Axios.get(
+		axios.get(
 			`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}`
 		).then(({ data: { articles: [ article ] } }) => {
 			this.setState({ article: article, isLoading: false });

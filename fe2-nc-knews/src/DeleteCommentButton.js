@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from '@reach/router';
 
 class DeleteCommentButton extends Component {
@@ -17,7 +17,7 @@ class DeleteCommentButton extends Component {
 
 	deleteComment = () => {
 		console.log(this.props);
-		return Axios.delete(
+		return axios.delete(
 			`https://jhnc-news.herokuapp.com/api/articles/${this.props.articleId}/comments/${this.props.commentId}`
 		).then(({ data }) => {
 			this.setState({ articles: data.articles });

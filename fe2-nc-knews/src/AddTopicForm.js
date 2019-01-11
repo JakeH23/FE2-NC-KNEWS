@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from '@reach/router';
 
 class AddTopicForm extends Component {
@@ -43,7 +43,7 @@ class AddTopicForm extends Component {
 
 	addToTopics = (event) => {
 		event.preventDefault();
-		Axios.post('https://jhnc-news.herokuapp.com/api/topics', {
+		axios.post('https://jhnc-news.herokuapp.com/api/topics', {
 			slug: this.state.slug,
 			description: this.state.description
 		}).then((res) => {

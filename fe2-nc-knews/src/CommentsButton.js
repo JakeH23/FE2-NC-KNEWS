@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Votes from './Votes';
 import moment from 'moment';
 import DeleteCommentButton from './DeleteCommentButton';
@@ -44,7 +44,7 @@ class CommentsButton extends Component {
 	}
 
 	showComments = () => {
-		Axios.get(
+		axios.get(
 			`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}/comments`
 		).then(({ data: { comments } }) => {
 			this.setState({ comments: comments });
