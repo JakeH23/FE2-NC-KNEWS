@@ -1,10 +1,10 @@
 ## NC Knews
-A deployed version of this project can be found here:
+A deployed version of this project can be found here: https://jh-nc-knews.netlify.com
 
 About
-NC News is a social news website and forum where content is socially curated and promoted by site members through voting. 
+NC Knews is a social news website and forum where content is socially curated and promoted by site members through voting. 
 
-NC News requires the user to login in order to view the content. Once logged in, the user remains logged in for the duration of your browser session thus allowing them to naviagate through all pages and intereact with the content. NC Knews provides the user with a plethora of articles which can be viewed on a broader spectrum through topics. Each article allows the user to intereact with it and can vote the articles up or down using the API. The user has the ability to add comments of their own and also, like the articles, vote on other users comments. The user can add and delete articles of their own and in addtion to adding comments, they can alos delete their own.
+NC Knews requires the user to login in order to view the content. Once logged in, the user remains logged in for the duration of your browser session thus allowing them to naviagate through all pages and intereact with the content. NC Knews provides the user with a plethora of articles which can be viewed on a broader spectrum through topics. Each article allows the user to intereact with it and can vote the articles up or down using the API. The user has the ability to add comments of their own and also, like the articles, vote on other users comments. The user can add and delete articles of their own and in addtion to adding comments, they can alos delete their own.
 
 Northcoders News was built in React, using Reach Router. This Front End uses Axios to make requests and relies on a Back-End API, which has been deployed here: https://jhnc-news.herokuapp.com/api/
 
