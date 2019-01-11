@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { Link } from '@reach/router';
 import Loading from './Loading';
 
-class User extends Component {
+class UserPersonalProfile extends Component {
 	state = {
 		user: {},
 		isLoading: true
@@ -19,9 +19,18 @@ class User extends Component {
 							<p>{`Username: ${this.state.user.username}`}</p>
 							<p id='useruseruser'>{this.state.user.name}</p>
 							<button id='submitInUser'>
+								<Link to='/addArticle'>Add Article</Link>
+							</button>
+							<button id='submitInUser'>
 								<Link to={`/users/${this.props.username}/articles`}>
 									{`${this.state.user.name}'s Articles`}{' '}
 								</Link>
+							</button>
+							<button id='submitInUser'>
+								<Link to='/addTopic'>Create a topic</Link>
+							</button>
+							<button id='submitInUser'>
+								<Link to='/articles/deleteArticle'>Delete article</Link>
 							</button>
 						</section>
 					</div>
@@ -36,4 +45,4 @@ class User extends Component {
 	}
 }
 
-export default User;
+export default UserPersonalProfile;

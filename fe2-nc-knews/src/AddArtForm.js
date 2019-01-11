@@ -12,7 +12,7 @@ class AddArtForm extends Component {
 		return (
 			<Fragment>
 				<div className='AddArtForm'>
-					<h4>Add a new article</h4>
+					<h2>Add a new article</h2>
 					<form>
 						<label>Article Title:</label>
 						<input
@@ -24,7 +24,7 @@ class AddArtForm extends Component {
 						<label>Article Body:</label>
 						<input onChange={this.handlebodyChange} id='body' type='text' value={this.state.body} />
 						<label>Topic:</label>
-						<input onChange={this.handleTopicChange} id='body' type='text' value={this.state.topic} />
+						<input onChange={this.handleTopicChange} id='title' type='text' value={this.state.topic} />
 						<button id='submit' onClick={this.addToArticles}>
 							<Link to='/'>Submit Article </Link>
 						</button>

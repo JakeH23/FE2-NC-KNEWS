@@ -21,7 +21,12 @@ class Header extends Component {
 						</Link>
 					</button>
 				</div>
-				<div className='Login'>{`You are logged in as: ${this.props.user.username}`}</div>
+				<div className='Login'>
+					{`You are logged in as: ${this.props.user.username}`}
+					<section>
+						<Link to={`/users/${this.props.user.username}/profile`}>View Profile</Link>
+					</section>
+				</div>
 				<div className='AddArticle'>
 					<button>
 						<Link to='/addArticle'>Click here to add an article of your own</Link>

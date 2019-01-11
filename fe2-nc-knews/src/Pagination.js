@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Pagenation extends Component {
+class Pagination extends Component {
 	render() {
 		return (
 			<div>
@@ -25,4 +25,4 @@ class Pagenation extends Component {
 	}
 }
 
-export default Pagenation;
+export default Pagination;

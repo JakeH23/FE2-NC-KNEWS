@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
-import { Link } from '@reach/router';
 import Votes from './Votes';
 import moment from 'moment';
 import DeleteCommentButton from './DeleteCommentButton';
@@ -36,7 +35,9 @@ class CommentsButton extends Component {
 							);
 						})}
 					</ul>
-					<button onClick={this.showComments}>Show Comments</button>
+					<button className='comComButton' onClick={this.showComments}>
+						Show Comments
+					</button>
 				</div>
 			</Fragment>
 		);

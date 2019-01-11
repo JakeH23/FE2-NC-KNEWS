@@ -11,7 +11,7 @@ class AddTopicForm extends Component {
 		return (
 			<Fragment>
 				<div className='AddTopForm'>
-					<h4>Create a new topic</h4>
+					<h2>Create a new topic</h2>
 					<form>
 						<label>Topic Name:</label>
 						<input onChange={this.handleTopicChange} id='title' type='text' value={this.state.slug} />
