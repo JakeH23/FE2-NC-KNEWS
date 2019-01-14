@@ -43,6 +43,7 @@ class AddComForm extends Component {
 			.then((err) => {
 				this.props.addedComment();
 				navigate(`/articles/${article_id}`);
+				this.setState({ body: '' });
 			})
 			.catch((err) => {
 				navigate('/404');
