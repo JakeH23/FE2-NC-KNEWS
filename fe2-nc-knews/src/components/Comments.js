@@ -4,10 +4,14 @@ import Votes from './Votes';
 import moment from 'moment';
 import { navigate } from '@reach/router';
 import DeleteCommentButton from './DeleteCommentButton';
+import Pagination from './layout/Pagination';
+
 class Comments extends Component {
 	state = {
 		comments: [],
-		isHidden: false
+		isHidden: false,
+		page: 1,
+		maxPage: 100000
 	};
 	render() {
 		return (
@@ -32,11 +36,13 @@ class Comments extends Component {
 										articleId={this.props.article_id}
 										author={comment.author}
 										username={this.props.username}
+										deletedComment={this.props.deletedComment}
 									/>
 								</li>
 							);
 						})}
 					</ul>
+					<Pagination handlePage={this.handlePage} />
 				</div>
 			</Fragment>
 		);
@@ -54,7 +60,11 @@ class Comments extends Component {
 	};
 
 	componentDidUpdate(prevProps) {
-		if (this.props.article_id !== prevProps.article_id || this.props.commentAdded !== prevProps.commentAdded) {
+		if (
+			this.props.article_id !== prevProps.article_id ||
+			this.props.commentAdded !== prevProps.commentAdded ||
+			this.props.commentDeleted !== prevProps.commentDeleted
+		) {
 			this.fetchArticle();
 		}
 	}
@@ -62,6 +72,32 @@ class Comments extends Component {
 	componentDidMount() {
 		this.fetchArticle();
 	}
+
+	handlePage = (increment) => {
+		this.setState({ page: this.state.page + increment }, () => {
+			if (this.state.page < 1) {
+				this.setState({ page: 1 });
+			} else if (this.state.page > this.state.maxPage) {
+				this.setState({ page: this.state.maxPage });
+			} else {
+				this.getPage().catch((err) => {
+					this.setState({ page: this.state.page - increment });
+				});
+			}
+		});
+	};
+
+	getPage = () => {
+		const newPage = `?p=${this.state.page}`;
+		return axios
+			.get(`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}/comments${newPage}`)
+			.then(({ data }) => {
+				this.setState({ comments: data.comments });
+				if (data.comments.length < 10) {
+					this.setState((state) => ({ maxPage: state.page }));
+				}
+			});
+	};
 }
 
 export default Comments;

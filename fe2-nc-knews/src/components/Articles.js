@@ -1,15 +1,17 @@
 import React, { Fragment, Component } from 'react';
 import { navigate, Link } from '@reach/router';
 import Votes from './Votes';
-
+import Pagination from './layout/Pagination';
 import Loading from './Loading';
 import * as api from '../api';
+import axios from 'axios';
 
 class Articles extends Component {
 	state = {
 		articles: [],
 		voteCount: 0,
 		page: 1,
+		maxPage: 100000,
 		isLoading: true
 	};
 	render() {
@@ -71,6 +73,7 @@ class Articles extends Component {
 							})}
 						</ul>
 					</div>
+					<Pagination handlePage={this.handlePage} />
 				</Fragment>
 			);
 	}
@@ -80,7 +83,9 @@ class Articles extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.topic !== prevProps.topic) this.getArticles();
+		if (this.props.topic !== prevProps.topic) {
+			this.setState((state) => ({ maxPage: 100000, articles: [], page: 1 }), this.getArticles());
+		}
 	}
 
 	getArticles = () => {
@@ -93,6 +98,34 @@ class Articles extends Component {
 			.catch(() => {
 				navigate('/404/noContent');
 			});
+	};
+
+	handlePage = (increment) => {
+		this.setState({ page: this.state.page + increment }, () => {
+			if (this.state.page < 1) {
+				this.setState({ page: 1 });
+			} else if (this.state.page > this.state.maxPage) {
+				this.setState({ page: this.state.maxPage });
+			} else {
+				this.getPage().catch((err) => {
+					this.setState({ page: this.state.page - increment });
+				});
+			}
+		});
+	};
+
+	getPage = () => {
+		const newPage = `?p=${this.state.page}`;
+		const url = this.props.topic
+			? `https://jhnc-news.herokuapp.com/api/topics/${this.props.topic}/articles${newPage}`
+			: `https://jhnc-news.herokuapp.com/api/articles${newPage}`;
+
+		return axios.get(url).then(({ data }) => {
+			this.setState({ articles: data.articles });
+			if (data.articles.length < 10) {
+				this.setState((state) => ({ maxPage: state.page }));
+			}
+		});
 	};
 }
 

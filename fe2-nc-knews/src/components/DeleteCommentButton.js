@@ -24,6 +24,7 @@ class DeleteCommentButton extends Component {
 				this.setState({ articles: data.articles });
 			})
 			.then((err) => {
+				this.props.deletedComment();
 				navigate(`/articles/${this.props.articleId}`);
 			})
 			.catch((err) => {

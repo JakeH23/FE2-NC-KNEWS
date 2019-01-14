@@ -11,8 +11,8 @@ class Article extends Component {
 	state = {
 		article: {},
 		isLoading: true,
-		page: 1,
-		commentAdded: false
+		commentAdded: false,
+		commentDeleted: false
 	};
 	render() {
 		const { isLoading } = this.state;
@@ -30,10 +30,13 @@ class Article extends Component {
 						<p id='bodyArt'>{body}</p>
 						<Votes articleId={article_id} votes={votes} />
 						<p>{`${comment_count} comments`}</p>
+
 						<Comments
 							article_id={this.props.article_id}
 							username={this.props.user.username}
 							commentAdded={this.state.commentAdded}
+							commentDeleted={this.state.commentDeleted}
+							deletedComment={this.deletedComment}
 						/>
 						<AddComForm
 							addedComment={this.addedComment}
@@ -47,6 +50,10 @@ class Article extends Component {
 
 	addedComment = () => {
 		this.setState({ commentAdded: true });
+	};
+
+	deletedComment = () => {
+		this.setState({ commentDeleted: true });
 	};
 
 	fetchArticle = () => {
@@ -66,6 +73,9 @@ class Article extends Component {
 		}
 		if (this.state.commentAdded !== prevState.commentAdded) {
 			this.setState({ commentAdded: false });
+		}
+		if (this.state.commentDeleted !== prevState.commentDeleted) {
+			this.setState({ commentDeleted: false });
 		}
 	}
 

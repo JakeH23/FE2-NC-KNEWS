@@ -7,7 +7,7 @@ class DeleteArticleButton extends Component {
 		return (
 			<div>
 				<button id='deleteArticleButton' onClick={this.deleteArticle}>
-					<Link to={`/users/${this.props.author}`}>
+					<Link to={`/users/${this.props.author}/profile`}>
 						<i className='fa fa-trash' aria-hidden='true' />
 					</Link>
 				</button>
