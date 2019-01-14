@@ -32,17 +32,19 @@ class Votes extends Component {
 		const voteObj = { inc_votes: increment };
 		if ((this.state.voteCount === 1 && increment === 1) || (this.state.voteCount === -1 && increment === -1)) {
 		} else {
-			this.setState({ voteCount: this.state.voteCount + increment });
-			axios.patch(
-				commentId
-					? `https://jhnc-news.herokuapp.com/api/articles/${articleId}/comments/${commentId}`
-					: `https://jhnc-news.herokuapp.com/api/articles/${articleId}`,
-				voteObj
-			).catch((err) => {
-				this.setState((state) => {
-					return { voteCount: state.voteCount - increment };
+			this.setState((state) => ({ voteCount: state.voteCount + increment }));
+			axios
+				.patch(
+					commentId
+						? `https://jhnc-news.herokuapp.com/api/articles/${articleId}/comments/${commentId}`
+						: `https://jhnc-news.herokuapp.com/api/articles/${articleId}`,
+					voteObj
+				)
+				.catch((err) => {
+					this.setState((state) => {
+						return { voteCount: state.voteCount - increment };
+					});
 				});
-			});
 		}
 	};
 }

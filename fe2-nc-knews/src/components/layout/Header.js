@@ -23,6 +23,9 @@ class Header extends Component {
 					{`You are logged in as: ${this.props.user.username}`}
 					<section>
 						<Link to={`/users/${this.props.user.username}/profile`}>View Profile</Link>
+						<button onClick={this.props.logout} className='logout'>
+							Log Out
+						</button>
 					</section>
 				</div>
 				<div className='AddArticle'>

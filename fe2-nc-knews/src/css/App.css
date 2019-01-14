@@ -2,10 +2,49 @@
 	display: grid;
 	grid-template: .6fr 15fr .4fr / .2fr 4.5fr 4fr 3fr;
 	grid-template-areas: "logo header login add" "main main main sidebar" "footer footer footer footer";
-	height: 100%;
+	height: 100vh;
 	width: 100%;
 	background: #ba1f32;
 	font-family: 'Poppins', sans-serif;
+}
+
+body {
+	margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+	.App {
+		display: grid;
+		grid-template: .6fr 15fr .4fr / .2fr 4.5fr 4fr 3fr;
+		grid-template-areas: "logo header login add" "main main main sidebar" "footer footer footer footer";
+		height: 100%;
+		width: 100%;
+		background: #ba1f32;
+		font-family: 'Poppins', sans-serif;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.Sidebar a {
+		font-size: 12px;
+		padding-bottom: 5px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.Sidebar ul {
+		height: 18px;
+		width: 80px;
+		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.AddTopic #submitTop {
+		margin-top: 280px;
+		justify-items: center;
+		width: 80px;
+	}
 }
 
 .Router {
@@ -26,12 +65,11 @@
 	font-weight: bold;
 }
 
-.Logo {
-	grid-area: logo;
-	height: 48px;
-	background-color: black;
+@media screen and (max-width: 600px) {
+	.Logo {
+		background-color: black;
+	}
 }
-
 .Login {
 	background-color: black;
 	grid-area: login;
@@ -42,6 +80,45 @@
 	padding-right: 10px;
 	font-size: 16px;
 	font-family: 'Poppins', sans-serif;
+}
+
+.logout {
+	width: 80px;
+	height: 40px;
+	background-color: black;
+	font-size: 16px;
+}
+
+.logout:hover {
+	width: 80px;
+	height: 40px;
+	background-color: black;
+}
+
+@media screen and (max-width: 600px) {
+	.logout {
+		font-size: 10px;
+		width: 50px;
+		height: 30px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.Login {
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.Header {
+		font-size: 24px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.AddArticle button {
+		font-size: 10px;
+	}
 }
 
 .AddArticle {
@@ -204,6 +281,13 @@ ul li:hover {
 	text-transform: capitalize;
 }
 
+.artCom a {
+	grid-area: comments;
+	text-align: center;
+	max-width: 100%;
+	text-transform: capitalize;
+}
+
 .artTop {
 	grid-area: topic;
 	text-align: left;
@@ -212,11 +296,19 @@ ul li:hover {
 	text-transform: capitalize;
 }
 
+.artTop a {
+	text-align: left;
+}
+
 .artAut {
 	grid-area: author;
 	max-width: 100%;
 	margin-left: 20px;
 	font-style: italic;
+}
+
+.artAut a {
+	text-align: left;
 }
 
 .artTitle {
@@ -260,6 +352,7 @@ ul li:hover {
 ul a {
 	color: black;
 	margin-right: 3px;
+	text-align: left;
 }
 
 #body {
@@ -283,8 +376,28 @@ ul a {
 	box-sizing: border-box;
 }
 
+#slug {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+#description {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
 #submit {
-	width: 140px;
+	width: 180px;
 	height: 40px;
 	background-color: black;
 	padding: 14px 20px;
@@ -350,6 +463,10 @@ ul a {
 	padding: 10px;
 	padding-bottom: 16px;
 	font-family: 'Poppins', sans-serif;
+}
+
+.authMain p {
+	color: white;
 }
 
 .authHeader h1 {
@@ -589,6 +706,13 @@ ul a {
 	padding: 12px;
 }
 
+@media screen and (max-width: 600px) {
+	#bodyArt {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
+
 #userImg {
 	height: 100px;
 	margin-top: 20px;
@@ -670,6 +794,13 @@ ul a {
 	font-size: 14px;
 	transition: 0.25s;
 	border-radius: 10px;
+	display: grid;
+	grid-template: 1fr / 4.5fr 1fr;
+	grid-template-areas: "userArtTitle articleCreated";
+}
+
+.artTitleName a {
+	text-align: left;
 }
 
 .DeleteArticle li {
@@ -700,6 +831,10 @@ ul a {
 	width: 30px;
 	margin-top: 12px;
 	margin-left: 12px;
+}
+
+.comComButton:after {
+	display: none;
 }
 
 .artDeleteTitle {

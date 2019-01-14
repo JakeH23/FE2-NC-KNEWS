@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import Loading from './Loading';
 
 class UserPersonalProfile extends Component {
@@ -9,15 +9,16 @@ class UserPersonalProfile extends Component {
 		isLoading: true
 	};
 	render() {
+		const { avatar_url, username, name } = this.state.user;
 		if (this.state.isLoading) return <Loading />;
 		else
 			return (
 				<Fragment>
 					<div className='userContainer'>
 						<section className='userMain'>
-							<img id='userImg' alt='' src={`${this.state.user.avatar_url}`} />
-							<p>{`Username: ${this.state.user.username}`}</p>
-							<p id='useruseruser'>{this.state.user.name}</p>
+							<img id='userImg' alt='' src={`${avatar_url}`} />
+							<p>{`Username: ${username}`}</p>
+							<p id='useruseruser'>{name}</p>
 							<section>
 								<button id='submitInUser'>
 									<Link to='/addArticle'>Add Article</Link>
@@ -25,9 +26,7 @@ class UserPersonalProfile extends Component {
 							</section>
 							<section>
 								<button id='submitInUser'>
-									<Link to={`/users/${this.props.username}/articles`}>
-										{`${this.state.user.name}'s Articles`}
-									</Link>
+									<Link to={`/users/${this.props.username}/articles`}>{`${name}'s Articles`}</Link>
 								</button>
 							</section>
 							<section>
@@ -47,9 +46,14 @@ class UserPersonalProfile extends Component {
 	}
 
 	componentDidMount() {
-		axios.get(`https://jhnc-news.herokuapp.com/api/users/${this.props.username}`).then(({ data: { user } }) => {
-			this.setState({ user: user, isLoading: false });
-		});
+		axios
+			.get(`https://jhnc-news.herokuapp.com/api/users/${this.props.username}`)
+			.then(({ data: { user } }) => {
+				this.setState({ user: user, isLoading: false });
+			})
+			.catch((err) => {
+				navigate('/404');
+			});
 	}
 }
 

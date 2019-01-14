@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as api from './api';
+import * as api from '../api';
 
 class Auth extends Component {
 	state = {
@@ -7,6 +7,7 @@ class Auth extends Component {
 		failedAttempt: false
 	};
 	render() {
+		const isEnabled = this.state.username.length > 0;
 		return this.props.user.user_id ? (
 			this.props.children
 		) : (
@@ -29,7 +30,7 @@ class Auth extends Component {
 								className='authFormInput'
 							/>
 						</section>
-						<button type='submit' className='loginButton'>
+						<button disabled={!isEnabled} type='submit' className='loginButton'>
 							Login
 						</button>
 					</form>

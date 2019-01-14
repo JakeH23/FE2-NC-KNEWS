@@ -1,28 +1,27 @@
 import React, { Fragment, Component } from 'react';
-import axios from 'axios';
-import { Link, navigate } from '@reach/router';
+import { navigate, Link } from '@reach/router';
 import Votes from './Votes';
-import Pagination from './Pagination';
-import Loading from './Loading';
 
-class Content extends Component {
+import Loading from './Loading';
+import * as api from '../api';
+
+class Articles extends Component {
 	state = {
 		articles: [],
 		voteCount: 0,
 		page: 1,
-		sort_by: 'votes',
-		replace: false,
 		isLoading: true
 	};
 	render() {
-		if (this.state.isLoading) return <Loading />;
+		const { isLoading, articles } = this.state;
+		if (isLoading) return <Loading />;
 		else
 			return (
 				<Fragment>
 					<div className='Content'>
 						<ul>
 							<h3>ARTICLES</h3>
-							{this.state.articles.map((article) => {
+							{articles.map((article) => {
 								return (
 									<li key={article.article_id}>
 										<Votes articleId={article.article_id} votes={article.votes} />
@@ -34,7 +33,7 @@ class Content extends Component {
 										<span className='artAut' key={'author' + article.article_id}>
 											<Link
 												to={
-													article.author === this.props.user.username ? (
+													article.author === this.props.username ? (
 														`/users/${article.author}/profile`
 													) : (
 														`/users/${article.author}`
@@ -56,7 +55,7 @@ class Content extends Component {
 										</span>
 										<div className='commentLogo'>
 											<button className='commentButtonSize'>
-												<Link to={`${article.article_id}/addComment`}>
+												<Link to={`articles/${article.article_id}`}>
 													<img
 														alt=''
 														className='commentButton'
@@ -71,40 +70,30 @@ class Content extends Component {
 								);
 							})}
 						</ul>
-						<Pagination handlePage={this.handlePage} />
 					</div>
 				</Fragment>
 			);
 	}
 
 	componentDidMount() {
-		axios.get(`https://jhnc-news.herokuapp.com/api/articles?sort_by=created_at`)
-			.then(({ data: { articles } }) => {
-				this.setState({ articles: articles, isLoading: false });
-			})
-			.catch((err) => {
-				navigate('/404', { replace: true });
-			});
+		this.getArticles();
 	}
 
-	handlePage = (increment) => {
-		this.setState({ page: this.state.page + increment }, () => {
-			if (this.state.page < 1) {
-				this.setState({ page: 1 });
-			} else {
-				this.getPage().catch((err) => {
-					this.setState({ page: this.state.page - increment });
-				});
-			}
-		});
-	};
+	componentDidUpdate(prevProps) {
+		if (this.props.topic !== prevProps.topic) this.getArticles();
+	}
 
-	getPage = () => {
-		const newPage = `?p=${this.state.page}`;
-		return axios.get(`https://jhnc-news.herokuapp.com/api/articles${newPage}`).then(({ data }) => {
-			this.setState({ articles: data.articles });
-		});
+	getArticles = () => {
+		const { topic } = this.props;
+		api
+			.getArticles(topic)
+			.then((articles) => {
+				this.setState({ articles: [ ...articles ], isLoading: false });
+			})
+			.catch(() => {
+				navigate('/404/noContent');
+			});
 	};
 }
 
-export default Content;
+export default Articles;
