@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import CommentsButton from './CommentsButton';
+import Comments from './Comments';
 import Votes from './Votes';
 import { Link, navigate } from '@reach/router';
 import moment from 'moment';
@@ -11,7 +11,8 @@ class Article extends Component {
 	state = {
 		article: {},
 		isLoading: true,
-		page: 1
+		page: 1,
+		commentAdded: false
 	};
 	render() {
 		const { isLoading } = this.state;
@@ -29,12 +30,24 @@ class Article extends Component {
 						<p id='bodyArt'>{body}</p>
 						<Votes articleId={article_id} votes={votes} />
 						<p>{`${comment_count} comments`}</p>
-						<CommentsButton article_id={this.props.article_id} username={this.props.user.username} />
-						<AddComForm article_id={this.props.article_id} user_id={this.props.user.user_id} />
+						<Comments
+							article_id={this.props.article_id}
+							username={this.props.user.username}
+							commentAdded={this.state.commentAdded}
+						/>
+						<AddComForm
+							addedComment={this.addedComment}
+							article_id={this.props.article_id}
+							user_id={this.props.user.user_id}
+						/>
 					</div>
 				</Fragment>
 			);
 	}
+
+	addedComment = () => {
+		this.setState({ commentAdded: true });
+	};
 
 	fetchArticle = () => {
 		axios
@@ -47,9 +60,12 @@ class Article extends Component {
 			});
 	};
 
-	componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps, prevState) {
 		if (this.props.article_id !== prevProps.article_id) {
 			this.fetchArticle();
+		}
+		if (this.state.commentAdded !== prevState.commentAdded) {
+			this.setState({ commentAdded: false });
 		}
 	}
 

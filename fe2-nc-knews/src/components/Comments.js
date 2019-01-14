@@ -4,7 +4,7 @@ import Votes from './Votes';
 import moment from 'moment';
 import { navigate } from '@reach/router';
 import DeleteCommentButton from './DeleteCommentButton';
-class CommentsButton extends Component {
+class Comments extends Component {
 	state = {
 		comments: [],
 		isHidden: false
@@ -46,7 +46,7 @@ class CommentsButton extends Component {
 		axios
 			.get(`https://jhnc-news.herokuapp.com/api/articles/${this.props.article_id}/comments`)
 			.then(({ data: { comments } }) => {
-				this.setState({ comments: comments, isHidden: true });
+				this.setState({ comments: comments });
 			})
 			.catch((err) => {
 				navigate('/404');
@@ -54,7 +54,7 @@ class CommentsButton extends Component {
 	};
 
 	componentDidUpdate(prevProps) {
-		if (this.props.article_id !== prevProps.article_id) {
+		if (this.props.article_id !== prevProps.article_id || this.props.commentAdded !== prevProps.commentAdded) {
 			this.fetchArticle();
 		}
 	}
@@ -64,4 +64,4 @@ class CommentsButton extends Component {
 	}
 }
 
-export default CommentsButton;
+export default Comments;

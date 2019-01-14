@@ -41,6 +41,7 @@ class AddComForm extends Component {
 				user_id: user_id
 			})
 			.then((err) => {
+				this.props.addedComment();
 				navigate(`/articles/${article_id}`);
 			})
 			.catch((err) => {

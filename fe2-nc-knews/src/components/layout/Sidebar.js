@@ -1,18 +1,14 @@
 import React, { Fragment, Component } from 'react';
-import axios from 'axios';
 import { Link } from '@reach/router';
 
 class Sidebar extends Component {
-	state = {
-		topics: []
-	};
 	render() {
 		return (
 			<Fragment>
 				<div className='Sidebar'>
 					<ul>
 						TOPICS
-						{this.state.topics.map((topic) => {
+						{this.props.topics.map((topic) => {
 							return (
 								<li key={topic.slug}>
 									<span className='topicname' key={'topicname' + topic.slug}>
@@ -32,12 +28,6 @@ class Sidebar extends Component {
 				</div>
 			</Fragment>
 		);
-	}
-
-	componentDidMount() {
-		axios.get(`https://jhnc-news.herokuapp.com/api/topics`).then(({ data: { topics } }) => {
-			this.setState({ topics: topics });
-		});
 	}
 }
 export default Sidebar;

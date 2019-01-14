@@ -17,10 +17,12 @@ import UserArticles from './components/UserArticles';
 import Errors from './components/errors/Errors';
 import UserPersonalProfile from './components/UserPersonalProfile';
 import NoContentError from './components/errors/NoContentError';
+import axios from 'axios';
 
 class App extends Component {
 	state = {
-		user: {}
+		user: {},
+		topics: []
 	};
 	render() {
 		return (
@@ -34,24 +36,33 @@ class App extends Component {
 						<Article user={this.state.user} path='/articles/:article_id' />
 						<User user={this.state.user} path='/users/:username' />
 						<Articles user={this.state.user} path='/:topic/articles' />
-						<AddTopicForm path='/addTopic' />
+						<AddTopicForm addTopic={this.addTopic} path='/addTopic' />
 						<DeleteArticlePage user={this.state.user} path='/articles/deleteArticle' />
 						<UserArticles user={this.state.user} path='/users/:username/articles' />
 						<UserPersonalProfile user={this.state.user} path='/users/:username/profile' />
 						<NoContentError path='/404/noContent' />
 						<Errors default />
 					</Router>
-					<Sidebar />
+					<Sidebar topics={this.state.topics} />
 					<Footer />
 				</Auth>
 			</div>
 		);
 	}
 
+	addTopic = (topic) => {
+		this.setState((state) => {
+			return { topics: [ ...state.topics, topic ] };
+		});
+	};
+
 	componentDidMount() {
 		if (localStorage.getItem('user')) {
 			this.setState({ user: JSON.parse(localStorage.getItem('user')) });
 		}
+		axios.get(`https://jhnc-news.herokuapp.com/api/topics`).then(({ data: { topics } }) => {
+			this.setState({ topics: topics });
+		});
 	}
 
 	login = (user) => {
