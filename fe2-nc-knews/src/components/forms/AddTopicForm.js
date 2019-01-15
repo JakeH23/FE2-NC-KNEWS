@@ -48,7 +48,6 @@ class AddTopicForm extends Component {
 				description: description
 			})
 			.then(({ data: { topic } }) => {
-				console.log(topic);
 				this.props.addTopic(topic);
 				navigate(`/${slug}/articles`);
 			})

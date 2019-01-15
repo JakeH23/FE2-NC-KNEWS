@@ -7,7 +7,8 @@ class AddArtForm extends Component {
 		title: '',
 		body: '',
 		topic: '',
-		topics: []
+		topics: [],
+		failedAttempt: false
 	};
 	render() {
 		const { title, body, articleTitle, topics } = this.state;
@@ -25,7 +26,7 @@ class AddArtForm extends Component {
 						required='required'
 					/>
 					<label>Article Body:</label>
-					<input onChange={this.handleChange} id='body' type='text' value={body} required='required' />
+					<textarea id='body' onChange={this.handleChange} value={body} required='required' rows='8' />
 					<label htmlFor='topic'>Topic:</label>
 					<select id='topic' onChange={this.handleChange} required='required'>
 						<option value=''>Choose topic</option>
@@ -39,6 +40,7 @@ class AddArtForm extends Component {
 						Submit Article
 					</button>
 				</form>
+				{this.state.failedAttempt && <p>Unable to submit article. Please ensure all fields are completed.</p>}
 			</Fragment>
 		);
 	}
@@ -60,11 +62,14 @@ class AddArtForm extends Component {
 				created_by: user_id,
 				topic: topic
 			})
-			.then((err) => {
+			.then(() => {
 				navigate(`/users/${username}/articles`);
 			})
 			.catch((err) => {
-				navigate('/404');
+				console.log('fail');
+				this.setState({
+					failedAttempt: true
+				});
 			});
 	};
 

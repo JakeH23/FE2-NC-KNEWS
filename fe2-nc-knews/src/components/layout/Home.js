@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Articles from '../Articles';
 
-class Home extends Component {
-	render() {
-		return <Articles username={this.props.user.username} />;
-	}
-}
+const Home = (props) => {
+	return <Articles username={props.user.username} />;
+};
 
 export default Home;

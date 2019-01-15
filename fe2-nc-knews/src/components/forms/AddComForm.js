@@ -15,7 +15,15 @@ class AddComForm extends Component {
 					<h4>Add a new comment</h4>
 					<form>
 						<label>Please enter your comment below:</label>
-						<input onChange={this.handleChange} id='body' type='text' value={body} required='required' />
+						<textarea
+							onChange={this.handleChange}
+							id='body'
+							type='text'
+							value={body}
+							required='required'
+							rows='3'
+						/>{' '}
+						/textarea>
 						<button disabled={!isEnabled} id='submit' onClick={this.addToComments}>
 							Submit Comment
 						</button>
