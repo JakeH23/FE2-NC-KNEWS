@@ -12,47 +12,6 @@ body {
 	margin: 0;
 }
 
-@media screen and (max-width: 600px) {
-	.App {
-		display: grid;
-		grid-template: .6fr 15fr .4fr / .2fr 4.5fr 4fr 3fr;
-		grid-template-areas: "logo header login add" "main main main sidebar" "footer footer footer footer";
-		height: 100%;
-		width: 100%;
-		background: #ba1f32;
-		font-family: 'Poppins', sans-serif;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.Sidebar {
-		font-size: 12px;
-		padding-bottom: 5px;
-	}
-}
-@media screen and (max-width: 600px) {
-	.Sidebar a {
-		font-size: 12px;
-		padding-bottom: 5px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.Sidebar ul {
-		height: 18px;
-		width: 80px;
-		justify-content: center;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.AddTopic #submitTop {
-		margin-top: 280px;
-		justify-items: center;
-		width: 80px;
-	}
-}
-
 .Router {
 	display: grid;
 	grid-template: .6fr 15fr .4fr / .2fr 4.5fr 3fr 3fr;
@@ -96,18 +55,6 @@ body {
 	margin: 0px;
 }
 
-@media screen and (max-width: 600px) {
-	.Login p {
-		visibility: hidden;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.Login {
-		height: 50px;
-	}
-}
-
 .logout {
 	width: 80px;
 	height: 40px;
@@ -121,58 +68,6 @@ body {
 	background-color: black;
 }
 
-@media screen and (max-width: 600px) {
-	.logout {
-		font-size: 10px;
-		width: 50px;
-		height: 30px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.Login {
-		font-size: 10px;
-	}
-}
-
-@media screen and (min-width: 600px) and (max-width: 775px) {
-	.Login {
-		font-size: 12px;
-		padding: 0px;
-	}
-}
-
-@media screen and (min-width: 600px) and (max-width: 775px) {
-	.logout {
-		font-size: 12px;
-		padding-bottom: 4px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.Header {
-		font-size: 24px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.AddArticle button {
-		font-size: 10px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.main {
-		font-size: 10px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	ul a {
-		font-size: 10px;
-	}
-}
-
 .AddArticle {
 	background-color: black;
 	grid-area: add;
@@ -184,7 +79,7 @@ body {
 
 button {
 	background-color: #ba1f32;
-	height: 66px;
+	height: 69px;
 	width: 100%;
 	border: none;
 	color: white;
@@ -318,15 +213,6 @@ ul li:hover {
 	margin-top: 5px;
 }
 
-@media screen and (max-width: 600px) {
-	.downVote,
-	.upVote {
-		height: 20px;
-		width: 20px;
-		background-size: 20px 20px;
-	}
-}
-
 .artVote {
 	grid-area: votes;
 	text-align: center;
@@ -334,12 +220,6 @@ ul li:hover {
 	padding-right: 20px;
 	padding-left: 6px;
 	text-transform: capitalize;
-}
-
-@media screen and (max-width: 600px) {
-	.artVote {
-		font-size: 10px;
-	}
 }
 
 .artCom {
@@ -386,18 +266,6 @@ ul li:hover {
 	font-weight: bold;
 	font-size: 14px;
 	text-transform: capitalize;
-}
-@media screen and (max-width: 600px) {
-	.artTitle,
-	.artAut,
-	.artTop {
-		margin-left: 0px;
-	}
-}
-@media screen and (max-width: 600px) {
-	.artVote {
-		padding-right: 10px;
-	}
 }
 
 #artButton {
@@ -515,19 +383,6 @@ ul a {
 	padding-left: 0px;
 	padding-bottom: 0;
 	padding-top: 0px;
-}
-
-@media screen and (max-width: 600px) {
-	.homeButton {
-		height: 58px;
-		width: 58px;
-	}
-}
-@media screen and (min-width: 600px) and (max-width: 775px) {
-	.homeButton {
-		height: 60px;
-		width: 60px;
-	}
 }
 
 .commentLogo {
@@ -799,13 +654,6 @@ ul a {
 	padding: 12px;
 }
 
-@media screen and (max-width: 600px) {
-	#bodyArt {
-		margin-left: 10px;
-		margin-right: 10px;
-	}
-}
-
 #userImg {
 	height: 100px;
 	margin-top: 20px;
@@ -941,4 +789,116 @@ ul a {
 
 #imgErr {
 	height: 350px;
+}
+
+@media screen and (max-width: 600px) {
+	.downVote,
+	.upVote {
+		height: 20px;
+		width: 20px;
+		background-size: 20px 20px;
+	}
+	.App {
+		display: grid;
+		grid-template: .6fr 15fr .4fr / .2fr 4.5fr 4fr 3fr;
+		grid-template-areas: "logo header login add" "main main main sidebar" "footer footer footer footer";
+		height: 100%;
+		width: 100%;
+		background: #ba1f32;
+		font-family: 'Poppins', sans-serif;
+	}
+	.Sidebar,
+	.Sidebar a {
+		font-size: 12px;
+		padding-bottom: 5px;
+	}
+	.Sidebar ul {
+		height: 18px;
+		width: 80px;
+		justify-content: center;
+	}
+	.AddTopic #submitTop {
+		margin-top: 280px;
+		justify-items: center;
+		width: 80px;
+	}
+	.Login p {
+		visibility: hidden;
+	}
+	.Login {
+		height: 50px;
+	}
+	.logout {
+		font-size: 10px;
+		width: 50px;
+		height: 30px;
+	}
+	.Login {
+		font-size: 10px;
+	}
+	.Header {
+		font-size: 24px;
+	}
+	.AddArticle button {
+		font-size: 10px;
+	}
+	.main {
+		font-size: 10px;
+	}
+	ul a {
+		font-size: 10px;
+	}
+
+	.artVote {
+		font-size: 10px;
+		padding-right: 10px;
+	}
+	.artTitle,
+	.artAut,
+	.artTop {
+		margin-left: 0px;
+	}
+	.homeButton {
+		height: 58px;
+		width: 58px;
+	}
+	#bodyArt {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 775px) {
+	.Login {
+		font-size: 12px;
+		padding: 0px;
+	}
+	.logout {
+		font-size: 12px;
+		padding-bottom: 4px;
+	}
+	.homeButton {
+		height: 60px;
+		width: 60px;
+	}
+}
+@media screen and (max-width: 350px) {
+	.App {
+		grid-template-areas: "logo header login add" "main main main main" "footer footer footer footer";
+	}
+	.Sidebar {
+		grid-area: main;
+		visibility: hidden;
+	}
+	.Header {
+		font-size: 20px;
+	}
+	.AddArticle button {
+		font-size: 9px;
+		padding-top: 0px;
+	}
+	.homeButton {
+		height: 54px;
+		width: 54px;
+	}
 }
