@@ -7,23 +7,20 @@ NC Knews requires the user to login in order to view the content. Once logged in
 
 NC Knews was built in ReactJS, using Reach Router. This Front End uses Axios to make requests and relies on a Back-End API, which has been deployed here: https://jhnc-news.herokuapp.com/api/
 
+## Prerequisities:
+
+1) git clone - https://github.com/JakeH23/FE2-NC-KNEWS
+
+2) cd FE2-NC-KNEWS - Access the folder file
+
+3) npm install - Install all dependencies needed
+
+4) npm start
+
 ## Requirements
     Node.js
     React.js
     @reach/router: ^1.2.1
     axios: ^0.18.0
     react: ^16.6.3
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Running
-
-To run a local version of the application, clone this repository, navigate to the repository folder, and run:
-
-npm install
-
-and then
-
-npm start
 
