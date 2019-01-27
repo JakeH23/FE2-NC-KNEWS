@@ -22,8 +22,7 @@ class AddComForm extends Component {
 							value={body}
 							required='required'
 							rows='3'
-						/>{' '}
-						/textarea>
+						/>
 						<button disabled={!isEnabled} id='submit' onClick={this.addToComments}>
 							Submit Comment
 						</button>
